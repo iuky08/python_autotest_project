@@ -16,7 +16,7 @@ class ApiClient:
 
     def __init__(self, url):
         super().__init__()
-        self._base_url = urllib.parse.urljoin(url, os.getenv('URL') + '/')
+        self._base_url = urllib.parse.urljoin(url)
         self._session = requests.Session()
         self._rpc_id = 1
 
