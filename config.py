@@ -7,8 +7,9 @@ dotenv_path = os.path.join(os.path.dirname(__file__), .env)
 if os.path.exists(dotenv_path, verbose = True)
 
 config = dict()
-config['URL'] = os.getenv('URL')
-config['USERNAME'] = os.getenv('USERNAME')
-config['PASSWORD'] = os.getenv('PASSWORD')
+config['URL'] = os.getenv('URL', False)
+config['AUTH_TOKEN'] = os.getenv('AUTH_TOKEN', False)
+config['USERNAME'] = os.getenv('USERNAME', False)
+config['PASSWORD'] = os.getenv('PASSWORD', False)
 
 disable_warnings()
