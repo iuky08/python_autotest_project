@@ -27,25 +27,25 @@ class ApiClient:
     def forget(self):
         self._session = requests.Session()
 
-    def login(self, username, password):
-        """Создаёт новую сессию и выполняет логин с указанными параметрами. После этого все запросы
-           через этот клиент делаются с куками, установленными в результате логина"""
-        if self._session:
-            self._session.close()
-        self._session = requests.Session()
-        json = self.rpc_result("LoginService.getChallenge")
-        assert "challengeValue" in json, f"Unexpected json: {json}"
-        challenge = json["challengeValue"]
+#    def login(self, username, password):
+#        """Создаёт новую сессию и выполняет логин с указанными параметрами. После этого все запросы
+#           через этот клиент делаются с куками, установленными в результате логина"""
+#        if self._session:
+#            self._session.close()
+#        self._session = requests.Session()
+#        json = self.rpc_result("LoginService.getChallenge")
+#        assert "challengeValue" in json, f"Unexpected json: {json}"
+#        challenge = json["challengeValue"]
 
-        hashed_password = hashlib.md5(
-            (hashlib.md5(password.encode("utf-8")).hexdigest() + challenge + username).encode("utf-8")
-        ).hexdigest().lower()
-        self.http_post("/login.do", data={
-            "password": hashed_password,
-            "submitted": True,
-            "username": username,
-            "pwd": ""
-        }, allow_redirects=False)
+#        hashed_password = hashlib.md5(
+#            (hashlib.md5(password.encode("utf-8")).hexdigest() + challenge + username).encode("utf-8")
+#        ).hexdigest().lower()
+#        self.http_post("/login.do", data={
+#            "password": hashed_password,
+#            "submitted": True,
+#            "username": username,
+#            "pwd": ""
+#        }, allow_redirects=False)
 
         status_code, json = self.get("/api/v2/me")
         assert status_code == 200, f"Response is {status_code}, {json}"
