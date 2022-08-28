@@ -1,2 +1,9 @@
+requests~=2.27.1
+pytest~=6.2.5
+python-dotenv~=0.19.2
+PyMySQL~=1.0.2
+SQLAlchemy~=1.4.31
+urllib3~=1.26.8
+pytest-unordered==0.4.1
+zipfile36
 allure-pytest
-pytest
