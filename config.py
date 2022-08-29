@@ -21,16 +21,14 @@ def load_env():
 
 @pytest.fixture(autouse=True, scope="dogs")
 def dogs_data():
-    """Загружает всё из файла .env и подставляет в environment variables.
-       Запускается автоматически один раз для всех тестов.
+    """Загружает данные для dogs из файла .env и подставляет в environment variables.
        """
     config['DOGS'] = os.getenv('DOGS', False)
         
 
 @pytest.fixture(autouse=True, scope="cats")
 def cats_data():
-    """Загружает всё из файла .env и подставляет в environment variables.
-       Запускается автоматически один раз для всех тестов.
+    """Загружает данные для cats из файла .env и подставляет в environment variables.
        """
       config['CATS'] = os.getenv('CATS', False)
         
