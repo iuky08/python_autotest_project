@@ -9,6 +9,7 @@ config['AUTH_TOKEN'] = os.getenv('AUTH_TOKEN', False)
 config['USERNAME'] = os.getenv('USERNAME', False)
 config['PASSWORD'] = os.getenv('PASSWORD', False)
 
+
 @pytest.fixture(autouse=True, scope="session")
 def load_env():
     """Загружает всё из файла .env и подставляет в environment variables.
@@ -17,7 +18,23 @@ def load_env():
     dotenv_path = os.path.join(os.path.dirname(__file__), '../.env')
     if os.path.exists(dotenv_path):
         load_dotenv(dotenv_path, verbose=True)
+
+@pytest.fixture(autouse=True, scope="dogs")
+def dogs_data():
+    """Загружает всё из файла .env и подставляет в environment variables.
+       Запускается автоматически один раз для всех тестов.
+       """
+    config['DOGS'] = os.getenv('DOGS', False)
         
+
+@pytest.fixture(autouse=True, scope="cats")
+def cats_data():
+    """Загружает всё из файла .env и подставляет в environment variables.
+       Запускается автоматически один раз для всех тестов.
+       """
+      config['CATS'] = os.getenv('CATS', False)
+        
+@deprecated
 @pytest.fixture(scope="session")
 def setup() -> SetupHelper:
     """Создаёт объект, помогающий настроить окружение перед началом теста.
