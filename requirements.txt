@@ -7,3 +7,7 @@ urllib3~=1.26.8
 pytest-unordered==0.4.1
 zipfile36
 allure-pytest
+json
+locust
+random
+pyquery
