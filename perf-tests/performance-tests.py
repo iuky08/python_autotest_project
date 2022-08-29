@@ -3,6 +3,7 @@ import random
 from locust import HttpUser, task, between
 from pyquery import PyQuery
 
+"""Проект с другого сайта, потому запросы могут быть с другого проекта"""
 
 class QuickstartUser(HttpUser):
     wait_time = between(1, 5)
@@ -51,6 +52,8 @@ class QuickstartUser(HttpUser):
         searchstring = "/search?surname={0}&forename={1}&patronym={2}&year_of_birth={3}".replace("{0}", fio[0]).\
                 replace("{1}", fio[1]).replace("{2}",fio[2]).replace("{3}", year)
         self.client.get(searchstring)
+        
+"""Переименовать или создать rian-json с полезными данными"""
 
     def on_start(self):
         with open('rian.json') as json_file:
